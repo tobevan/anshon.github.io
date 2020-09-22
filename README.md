@@ -7,5 +7,5 @@
 - Android 系统启动
 - Android 四大组件
 
-[滑动冲突](/Users/anshon/gitnotes/anshon.github.io/docs/view/touch_conflict.md)
+[滑动冲突](../view/touch_conflict.md)
 
