@@ -7,4 +7,5 @@
 - Android 系统启动
 - Android 四大组件
 
-[自定义view]: ./docs/view/view.md	"自定义view"
+[滑动冲突](/Users/anshon/gitnotes/anshon.github.io/docs/view/touch_conflict.md)
+
