@@ -7,5 +7,11 @@
 - Android 系统启动
 - Android 四大组件
 
-[滑动冲突](../view/touch_conflict.md)
+
+
+View
+
+[滑动冲突](docs/view/touch_conflict.md)
+
+[RecyclerView性能优化](docs/view/RecyclerView.md)
 
