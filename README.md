@@ -2,16 +2,51 @@
 
   把自己平时开发及学习到的知识记录下来
 
-- Java基础
-- Android 系统架构
-- Android 系统启动
-- Android 四大组件
 
 
-
-View
+### View
 
 [滑动冲突](docs/view/touch_conflict.md)
 
-[RecyclerView性能优化](docs/view/RecyclerView.md)
+
+
+
+
+### 性能优化：
+
+##### java虚拟机模型
+
+##### Android studio分析工具
+
+   trace.begin(),trace.end   
+
+   cpu Profile 、gpu profile
+
+##### 开源库leackcannary、blockcannary
+
+##### 开发注意事项
+
+​	[RecyclerView性能优化](docs/view/RecyclerView.md)
+
+​    数据类型的选择   hashmap、 LinkedHashMap、spareArray
+
+##### 关注性能的开源库
+
+​	mmkv、logUtils、
+
+### 语言类
+
+##### Kotlin
+
+[协程](docs/kotlin/coroutine.md)
+
+gradle
+
+rxjava
+
+Flutter
+
+
+
+
 
