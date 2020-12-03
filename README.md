@@ -8,10 +8,6 @@
 
 [滑动冲突](docs/view/touch_conflict.md)
 
-
-
-
-
 ### 性能优化：
 
 ##### java虚拟机模型
@@ -34,9 +30,13 @@
 
 ​	mmkv、logUtils、
 
+
+
 ### 语言类
 
 ##### Kotlin
+
+[基础知识](docs/kotlin/kotlinbase.md)
 
 [协程](docs/kotlin/coroutine.md)
 
