@@ -115,4 +115,7 @@ Thread{
 }
 ```
 
-<img src="coroutine.assets/image-20201203011304238.png" alt="image-20201203011304238" style="zoom:50%;" />
+
+
+<img src="coroutine.assets/image-20201203011304238.png" alt="image-20201203011304238"/>
+
