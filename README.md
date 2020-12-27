@@ -42,7 +42,7 @@
 
 gradle
 
-rxjava
+[rxjava](docs/rxjava/rxjava.md)
 
 Flutter
 
