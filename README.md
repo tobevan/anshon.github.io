@@ -42,7 +42,7 @@
 
 gradle
 
-[rxjava](docs/rxjava/rxjava.md)
+[rxjava操作符](docs/rxjava/rxjava_operator.md)
 
 Flutter
 
