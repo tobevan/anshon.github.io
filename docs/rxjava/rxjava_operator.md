@@ -298,3 +298,28 @@ Observable.create((ObservableOnSubscribe<Integer>) emitter -> {
 2020-12-30 01:23:52.071 20081-20081/com.anshon.myapplication E/MainActivity: consumer onNext: 2
 2020-12-30 01:23:52.071 20081-20081/com.anshon.myapplication E/MainActivity: consumer onError: access denied!
 ```
+
+
+
+## 其他
+
+doOnNext  不订阅事件（非下游）的情况下，获取数据
+
+```java
+        Observable.just("1", "2", "3", "4")
+                .doOnNext(s -> {
+                    Log.e(TAG, "doOnNext: " + s);
+                }).subscribe(s -> {
+            Log.e(TAG, "subscribe: " + s);
+        });
+
+2021-01-11 23:17:53.647 15794-15794/com.anshon.myapplication E/MainActivity: doOnNext: 1
+2021-01-11 23:17:53.647 15794-15794/com.anshon.myapplication E/MainActivity: subscribe: 1
+2021-01-11 23:17:53.647 15794-15794/com.anshon.myapplication E/MainActivity: doOnNext: 2
+2021-01-11 23:17:53.647 15794-15794/com.anshon.myapplication E/MainActivity: subscribe: 2
+2021-01-11 23:17:53.647 15794-15794/com.anshon.myapplication E/MainActivity: doOnNext: 3
+2021-01-11 23:17:53.647 15794-15794/com.anshon.myapplication E/MainActivity: subscribe: 3
+2021-01-11 23:17:53.647 15794-15794/com.anshon.myapplication E/MainActivity: doOnNext: 4
+2021-01-11 23:17:53.647 15794-15794/com.anshon.myapplication E/MainActivity: subscribe: 4
+```
+
