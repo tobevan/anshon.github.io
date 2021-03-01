@@ -74,6 +74,73 @@ override fun onDestroy() {
 
 
 ```kotlin
+//线程并行
+
+scope.launch(Dispatchers.Main) {
+
+            coroutineScope {// 协程环境块，当前块执行完毕再切到其他协程
+                async(Dispatchers.IO) { ioCode1() }
+                async(Dispatchers.IO) { ioCode2() }
+            }
+//            val one = async(Dispatchers.IO) { ioCode1() }
+//            val two = async(Dispatchers.IO) { ioCode2() }
+//            one.await()
+//            two.await()
+            uiCode1()
+            uiCode2()
+        }
+        
+    suspend fun ioCode1() {
+        Log.e(TAG, "ioCode1: " + Thread.currentThread().name)
+        for (i in 0 until 10) {
+            Log.e(Companion.TAG, "ioCode1: $i")
+            delay(10)
+        }
+    }
+
+    suspend fun ioCode2() {
+        Log.e(TAG, "ioCode2: " + Thread.currentThread().name)
+        for (i in 0 until 5) {
+            Log.e(Companion.TAG, "ioCode2: $i")
+            delay(10)
+        }
+    }
+
+    fun uiCode1() {
+        Log.e(Companion.TAG, "uiCode1: " + Thread.currentThread().name)
+    }
+
+    fun uiCode2() {
+        Log.e(Companion.TAG, "uiCode2: " + Thread.currentThread().name)
+    }
+    
+
+2021-03-01 17:07:29.799 14712-14753/com.anshon.myapplication E/MainActivity: ioCode1: DefaultDispatcher-worker-1
+2021-03-01 17:07:29.799 14712-14753/com.anshon.myapplication E/MainActivity: ioCode1: 0
+2021-03-01 17:07:29.800 14712-14755/com.anshon.myapplication E/MainActivity: ioCode2: DefaultDispatcher-worker-3
+2021-03-01 17:07:29.800 14712-14755/com.anshon.myapplication E/MainActivity: ioCode2: 0
+2021-03-01 17:07:29.816 14712-14755/com.anshon.myapplication E/MainActivity: ioCode1: 1
+2021-03-01 17:07:29.817 14712-14754/com.anshon.myapplication E/MainActivity: ioCode2: 1
+2021-03-01 17:07:29.827 14712-14757/com.anshon.myapplication E/MainActivity: ioCode1: 2
+2021-03-01 17:07:29.827 14712-14754/com.anshon.myapplication E/MainActivity: ioCode2: 2
+2021-03-01 17:07:29.838 14712-14757/com.anshon.myapplication E/MainActivity: ioCode2: 3
+2021-03-01 17:07:29.838 14712-14754/com.anshon.myapplication E/MainActivity: ioCode1: 3
+2021-03-01 17:07:29.849 14712-14757/com.anshon.myapplication E/MainActivity: ioCode1: 4
+2021-03-01 17:07:29.849 14712-14754/com.anshon.myapplication E/MainActivity: ioCode2: 4
+2021-03-01 17:07:29.861 14712-14757/com.anshon.myapplication E/MainActivity: ioCode1: 5
+2021-03-01 17:07:29.872 14712-14757/com.anshon.myapplication E/MainActivity: ioCode1: 6
+2021-03-01 17:07:29.882 14712-14757/com.anshon.myapplication E/MainActivity: ioCode1: 7
+2021-03-01 17:07:29.893 14712-14757/com.anshon.myapplication E/MainActivity: ioCode1: 8
+2021-03-01 17:07:29.905 14712-14757/com.anshon.myapplication E/MainActivity: ioCode1: 9
+2021-03-01 17:07:29.930 14712-14712/com.anshon.myapplication E/MainActivity: uiCode1: main
+2021-03-01 17:07:29.930 14712-14712/com.anshon.myapplication E/MainActivity: uiCode2: main
+
+    
+```
+
+
+
+```kotlin
 user:LiveData<User> = livedata{
  emit(loadData()) //从后台推到前台
 }
@@ -100,6 +167,8 @@ coroutines ->ViewModule -> liveData -> lifecycle -> Room   Repository  协程和
 3.delay比sleep性能更好？错误的,  下面两种写法是等价的。当然如果直接在主线程sleep会卡，要开子线程
 
 遗留：同时开10万个协程delay比同时开10万个线程性能好
+
+答：delay不会阻塞其他协程，sleep会阻塞其他协程执行，可以修改「线程并行」的代码里ioCode1里的函数为sleep，会发现ioCode2不会并行执行了
 
 ```kotlin
 scope.launch {
